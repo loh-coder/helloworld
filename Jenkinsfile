@@ -9,6 +9,7 @@ node {
         sh 'npm install'
 
    stage 'Mocha test'
+        sh 'node --harmony ./node_modules/zombie/lib/index.js'
         sh './node_modules/mocha/bin/mocha'
 
    stage 'Cleanup'
