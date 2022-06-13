@@ -1,18 +1,27 @@
-#!groovy 
-
-node {
-   stage 'Checkout'
+pipeline {
+  agent any
+    
+  tools {nodejs "node"}
+    
+  stages {
+        
+    stage('Checkout') {
+      steps {
         checkout scm
-
-   stage 'Setup'
-        sh 'npm config set registry http://registry.npmjs.org/'
+      }
+    }
+        
+    stage('Install dependencies') {
+      steps {
+	    sh 'npm config set registry http://registry.npmjs.org/'
         sh 'npm install'
-
-   stage 'Mocha test'
-        sh 'npm test'
-
-   stage 'Cleanup'
-        echo 'prune and cleanup'
-        sh 'npm prune'
-        sh 'rm node_modules -rf'
+      }
+    }
+     
+    stage('Test') {
+      steps {
+         sh 'npm test'
+      }
+    }      
+  }
 }
