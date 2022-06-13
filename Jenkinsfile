@@ -6,12 +6,10 @@ node {
 
    stage 'Setup'
         sh 'npm config set strict-ssl false'
-        sh 'npm cache clean -f'
-        sh 'npm install -g n'
-        sh 'n stable'
+        sh 'npm install'
 
    stage 'Mocha test'
-        sh './node_modules/mocha/bin/mocha'
+        sh 'npm test'
 
    stage 'Cleanup'
         echo 'prune and cleanup'
