@@ -6,10 +6,11 @@ node {
 
    stage 'Setup'
         sh 'npm config set strict-ssl false'
-        sh 'npm install'
+        sh 'npm cache clean -f'
+        sh 'npm install -g n'
+        sh 'n stable'
 
    stage 'Mocha test'
-        sh 'node --harmony ./node_modules/zombie/lib/index.js'
         sh './node_modules/mocha/bin/mocha'
 
    stage 'Cleanup'
