@@ -5,11 +5,11 @@ node {
         checkout scm
 
    stage 'Setup'
-        sh 'npm config set registry http://registry.npmjs.org/ '
+        sh 'npm config set registry http://registry.npmjs.org/'
         sh 'npm install'
 
    stage 'Mocha test'
-        sh './node_modules/mocha/bin/mocha'
+        sh 'npm test'
 
    stage 'Cleanup'
         echo 'prune and cleanup'
